@@ -15,6 +15,8 @@ router.post('/signin', async (req, res)=> {
   }
 });
 
+
+
 router.post('/login', async (req, res)=>{
   try {
     const {email, password} = req.body;
@@ -26,6 +28,8 @@ router.post('/login', async (req, res)=>{
     res.status(403).json({error:"Credenciales no son Válidas"});
   }
 });
+
+
 
 router.post('/addrole/:id', async (req, res)=>{
   try {
