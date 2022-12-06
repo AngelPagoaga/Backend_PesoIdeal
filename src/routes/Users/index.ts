@@ -6,9 +6,15 @@ const users = new Users();
 router.post('/signin', async (req, res)=> {
   try {
     const {name, email, password} = req.body;
-    const result = await users.signin(name, email, password);
-    console.log("SIGNIN:", result);
-    res.status(200).json({"msg":"Usuario Creado Correctamente"});
+    if (name == "" || email == "" || password == "") {
+      res.status(500).json({error: "Lo siento no puede dejar los campos vacios"})
+    } else {
+      const result = await users.signin(name, email, password);
+      console.log("SIGNIN:", result);
+      res.status(200).json({"msg":"Usuario Creado Correctamente"});
+      console.log('Creado corerectamenet');
+    }
+    
   } catch(ex) {
     console.log("Error:", ex);
     res.status(500).json({error:"Error al crear usuario"});
