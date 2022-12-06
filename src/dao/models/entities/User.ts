@@ -10,5 +10,10 @@ export interface IUser {
   failedAttempts? : number;
   lastLogin?: Date;
   roles: string[];
+  lastBMI:string;
+  lastWeight:string;
+  lastAge:string;
+  lastHeight:string;
+  lastChecked:Date;
   _id?: unknown;
 }
