@@ -7,3 +7,4 @@ export interface IDaoObject {
   findByFilter: Function;
   aggregate: Function;
 }
+//hola
