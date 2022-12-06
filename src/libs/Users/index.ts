@@ -1,5 +1,6 @@
 import { getConnection } from "@models/mongodb/MongoDBConn";
 import { UsersDao  } from "@models/mongodb/UsersDao";
+import { IUser } from "@server/dao/models/entities/User";
 import {checkPassword, getPassword } from "@utils/crypto";
 import { sign } from "@utils/jwt";
 const availableRole = ['public', 'admin', 'auditor', 'support'];
@@ -26,6 +27,11 @@ export class Users {
       lastLogin: currentDate,
       avatar:'',
       roles: ['public'],
+      lastBMI:"",
+      lastWeight:"",
+      lastAge:"",
+      lastHeight:"",
+      lastChecked:null,
       _id: null
     };
     return this.dao.createUser(newUser);
@@ -57,6 +63,17 @@ export class Users {
       throw err;
     }
   }
+  public async updateUser(id:string,data:Partial<IUser>){
+    console.log(data)
+    return await this.dao.update(id,data)
+  }
+
+public async getUserBMI(id:string){
+
+  return await this.dao.findByID(id)
+
+
+}
 
   public async assignRoles(id: string, role: string) {
     if( ! availableRole.includes(role) ){
